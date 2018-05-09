@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 var schedule = require('node-schedule');
 var Crawler = require("crawler");
 
