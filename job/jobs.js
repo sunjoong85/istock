@@ -72,7 +72,7 @@ const traderTrend = {
               }
 
 
-              const filePath = path.join(__dirname, '../투자자별매매동향.json')
+              const filePath = path.join(__dirname, '../traderTrend.json')
 
               let dataList = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 

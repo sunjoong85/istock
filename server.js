@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(req, res) {
-  let contents = fs.readFileSync('./투자자별매매동향.json', 'utf8');
+  let contents = fs.readFileSync('./traderTrend.json', 'utf8');
   res.send(contents);
 });
 
