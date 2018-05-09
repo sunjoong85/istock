@@ -13,15 +13,11 @@ app.get('/', function(req, res) {
   res.send(contents);
 });
 
-
 app.listen(7777, function () {
   console.log('Example app listening on port 7777!');
 });
 
-
-
-schedule.scheduleJob('0 20 * * 1-5', function(){
-  console.log('run scheduler');
-
+schedule.scheduleJob('0 18 * * 1-5', function(){
+  // console.log('run scheduler');
   crawler.queue(require('./job/jobs'));
 });
