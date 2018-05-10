@@ -37,6 +37,7 @@ const traderTrend = {
               var obj = {
                 'date' : today.getTime(),
                 'date_str' : today,
+                'title' : 'KOSIP',
                 '개인' : convertNum($투자자별매매동향.find(sel개인).text()),
                 '외국인' : convertNum($투자자별매매동향.find(sel외국인).text()),
                 '기관' : convertNum($투자자별매매동향.find(sel기관).text())
