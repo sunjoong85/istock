@@ -5,13 +5,14 @@
   </head>
   <body>
     <h1>iStock - Monitoring Investment Factors</h1>
-    <div style='height:30%'>
+    <div style='position: relative;margin: auto;height: 100vh;width: 100vw;'>
       <canvas id='canvas'></canvas>
     </div>
 
   </body>
   <script>
-  Chart.defaults.global.defaultFontSize=18; 
+  //모바일 사이즈
+  Chart.defaults.global.defaultFontSize=20;
 
   var req = new XMLHttpRequest();
   req.open('GET', '/traderTrend', true);
@@ -89,7 +90,7 @@
 				title: {
 					display: true,
 					text: '투자자별매매동향(KOSPI)',
-          fontSize : 25
+          fontSize : 28
 				},
 				tooltips: {
 					mode: 'index',
