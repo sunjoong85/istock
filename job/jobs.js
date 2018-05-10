@@ -47,7 +47,7 @@ const traderTrend = {
 
               let dataList = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
-               dataList.unshift(obj);
+               dataList.push(obj);
 
               fs.writeFile(filePath, JSON.stringify(dataList), function(err) {
                   if(err) {
