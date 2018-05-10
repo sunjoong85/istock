@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+  </head>
+  <body>
+    iStock - Monitoring Investment Factors
+    <div>
+      <canvas id='canvas'></canvas>
+    </div
+
+  </body>
+  <script>
+  var req = new XMLHttpRequest();
+  req.open('GET', '/traderTrend', true);
+  req.onreadystatechange = function (aEvt) {
+    if (req.readyState == 4) {
+       console.log(req.responseText);
+       var data = JSON.parse(req.responseText);
+
+       var label = [];
+       var indivisual = [];
+       var foreigner = [];
+       var institutional = [];
+
+       data.forEach(function(o) {
+          var d = new Date(o.date);
+          d = d.getFullYear() + '.' + (d.getMonth()*1+1) + '.' + d.getDate();
+
+          label.push(d);
+          indivisual.push(o.개인);
+          foreigner.push(o.외국인);
+          institutional.push(o.기관);
+       })
+
+       config.data.labels = label;
+       config.data.datasets[0].data = indivisual;
+       config.data.datasets[1].data = foreigner;
+       config.data.datasets[2].data = institutional;
+
+	      window.myLine.update();
+
+       if(req.status == 200){
+       }
+    }
+  };
+  req.send(null);
+
+  window.chartColors = {
+  	red: 'rgb(255, 99, 132)',
+  	orange: 'rgb(255, 159, 64)',
+  	yellow: 'rgb(255, 205, 86)',
+  	green: 'rgb(75, 192, 192)',
+  	blue: 'rgb(54, 162, 235)',
+  	purple: 'rgb(153, 102, 255)',
+  	grey: 'rgb(201, 203, 207)'
+  };
+
+    var config = {
+			type: 'line',
+			data: {
+				labels: [],
+				datasets: [{
+					label: '개인',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [],
+					fill: false,
+				}, {
+					label: '외국인',
+					fill: false,
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [],
+				},
+        {
+          label: '기관',
+          fill: false,
+          backgroundColor: window.chartColors.yellow,
+          borderColor: window.chartColors.yellow,
+          data: [],
+        }]
+			},
+
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: '투자자별매매동향(KOSPI)'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: '억원'
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+
+  </script>
+</html>

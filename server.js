@@ -1,16 +1,23 @@
 const fs = require('fs');
+const path = require('path');
 
 var schedule = require('node-schedule');
 var Crawler = require("crawler");
-
 var crawler = new Crawler();
 
 var express = require('express');
 var app = express();
 
+app.use(express.static('./www'))
+
 app.get('/', function(req, res) {
-  let contents = fs.readFileSync('./traderTrend.json', 'utf8');
-  res.send(contents);
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.get('/traderTrend', (req, res) => {
+  fs.readFile('./traderTrend.json', 'utf8', (err, contents) => {
+    res.send(contents);
+  });
 });
 
 app.listen(7777, function () {
