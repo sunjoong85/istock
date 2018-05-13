@@ -20,11 +20,15 @@ app.get('/traderTrend', (req, res) => {
   });
 });
 
+//#KOSPI_now
+//
 app.listen(7777, function () {
   console.log('Example app listening on port 7777!');
 });
 
-schedule.scheduleJob('0 18 * * 1-5', function(){
-  // console.log('run scheduler');
   crawler.queue(require('./job/jobs'));
+  
+schedule.scheduleJob('0 17 * * 1-5', function(){
+  // console.log('run scheduler');
+
 });

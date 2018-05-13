@@ -19,12 +19,13 @@
   req.onreadystatechange = function (aEvt) {
     if (req.readyState == 4) {
        console.log(req.responseText);
-       var data = JSON.parse(req.responseText);
+       let data = JSON.parse(req.responseText);
 
-       var label = [];
-       var indivisual = [];
-       var foreigner = [];
-       var institutional = [];
+       let label = [];
+       let indivisual = [];
+       let foreigner = [];
+       let institutional = [];
+       let kospiPriceIndexes = [];
 
        data.forEach(function(o) {
           var d = new Date(o.date);
@@ -34,12 +35,14 @@
           indivisual.push(o.개인);
           foreigner.push(o.외국인);
           institutional.push(o.기관);
+          kospiPriceIndexes.push(o.priceIndex);
        })
 
        config.data.labels = label;
        config.data.datasets[0].data = indivisual;
        config.data.datasets[1].data = foreigner;
        config.data.datasets[2].data = institutional;
+       config.data.datasets[3].data = kospiPriceIndexes;
 
 	      window.myLine.update();
 
@@ -65,16 +68,19 @@
 				labels: [],
 				datasets: [{
 					label: '개인',
+          fill: false,
 					backgroundColor: window.chartColors.red,
 					borderColor: window.chartColors.red,
 					data: [],
-					fill: false,
+          yAxisID : 'y-axis-1'
+
 				}, {
 					label: '외국인',
 					fill: false,
 					backgroundColor: window.chartColors.blue,
 					borderColor: window.chartColors.blue,
 					data: [],
+          yAxisID : 'y-axis-1'
 				},
         {
           label: '기관',
@@ -82,10 +88,25 @@
           backgroundColor: window.chartColors.yellow,
           borderColor: window.chartColors.yellow,
           data: [],
+          yAxisID : 'y-axis-1'
+        },
+        {
+          label: 'KOSPI',
+          fill: false,
+          backgroundColor: window.chartColors.grey,
+          borderColor: window.chartColors.grey,
+          borderDash : [5],
+          data: [],
+          yAxisID: 'y-axis-2'
         }]
 			},
 
 			options: {
+        elements: {
+           line: {
+               tension: 0, // disables bezier curves
+           }
+        },
 				responsive: true,
 				title: {
 					display: true,
@@ -109,8 +130,20 @@
 						scaleLabel: {
 							display: true,
 							labelString: '억원'
-						}
-					}]
+						},
+            id: 'y-axis-1'
+					},
+          { display: true,
+            position: 'right',
+            id: 'y-axis-2',
+            scaleLabel: {
+              display: true,
+              labelString : 'KOSPI'
+            },
+            ticks: {
+              stepSize : 5
+            }
+          }]
 				}
 			}
 		};

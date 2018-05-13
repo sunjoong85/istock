@@ -11,7 +11,8 @@ const traderTrend = {
       const sel개인 = 'dd:nth-child(2) > span';
       const sel외국인 = 'dd:nth-child(3) > span';
       const sel기관 = 'dd:nth-child(4) > span';
-
+      const selKOSPIIndex = '#now_value';
+      
         if(error){
            console.log(error);
         } else{
@@ -32,15 +33,16 @@ const traderTrend = {
 
            if(matchToday(convertYMD($(sel날짜).text()))) {
               let today = new Date();
-              today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 15, 30, 0);
+              today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 00, 0);
 
               var obj = {
                 'date' : today.getTime(),
                 'date_str' : today,
                 'title' : 'KOSPI',
-                '개인' : convertNum($투자자별매매동향.find(sel개인).text()),
-                '외국인' : convertNum($투자자별매매동향.find(sel외국인).text()),
-                '기관' : convertNum($투자자별매매동향.find(sel기관).text())
+                'priceIndex' : convertPriceIndexNum($(selKOSPIIndex).text()),
+                '개인' : convertTraderTrendNum($투자자별매매동향.find(sel개인).text()),
+                '외국인' : convertTraderTrendNum($투자자별매매동향.find(sel외국인).text()),
+                '기관' : convertTraderTrendNum($투자자별매매동향.find(sel기관).text())
               }
 
               const filePath = path.join(__dirname, '../traderTrend.json')
@@ -78,7 +80,14 @@ function matchToday(ymdList) {
   return today.getFullYear() == ymdList[0] && today.getMonth() == ymdList[1] - 1 && today.getDate() == ymdList[2];
 }
 
-function convertNum(str) {
+//2,477.71을 변환한다.
+function convertPriceIndexNum(str) {
+  console.log("input" , str);
+  return str.split(',').join('')*1;
+}
+
+//-2,453 억원 을 변환한다.
+function convertTraderTrendNum(str) {
    let num = '';
    num += str[0];
    for(let i=1; i<str.length; i++) {
