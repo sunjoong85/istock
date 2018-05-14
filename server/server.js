@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/traderTrend', (req, res) => {
-  fs.readFile('./traderTrend.json', 'utf8', (err, contents) => {
+  fs.readFile('../traderTrend.json', 'utf8', (err, contents) => {
     res.send(contents);
   });
 });
