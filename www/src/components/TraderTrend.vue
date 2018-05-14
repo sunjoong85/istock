@@ -17,7 +17,7 @@
         grey: 'rgb(201, 203, 207)'
     };
 
-    var config = {
+    let config = {
         type: 'line',
         data: {
             labels: [],
@@ -102,6 +102,8 @@
             }
         }
     };
+
+    let myLine;
     //모바일 사이즈
 
     export default {
@@ -109,47 +111,49 @@
 
         mounted: function() {
             var ctx = document.getElementById('canvas').getContext('2d');
-            window.myLine = new Chart(ctx, config);
+            myLine = new Chart(ctx, config);
             this.getData();
         },
 
-        getData: function() {
-            var req = new XMLHttpRequest();
-            req.open('GET', '/traderTrend', true);
-            req.onreadystatechange = function (aEvt) {
-                if (req.readyState == 4) {
-                    let data = JSON.parse(req.responseText);
+        methods: {
+            getData : function() {
+                var req = new XMLHttpRequest();
+                req.open('GET', '/traderTrend', true);
+                req.onreadystatechange = function (aEvt) {
+                    if (req.readyState == 4) {
+                        let data = JSON.parse(req.responseText);
 
-                    let label = [];
-                    let indivisual = [];
-                    let foreigner = [];
-                    let institutional = [];
-                    let kospiPriceIndexes = [];
+                        let label = [];
+                        let indivisual = [];
+                        let foreigner = [];
+                        let institutional = [];
+                        let kospiPriceIndexes = [];
 
-                    data.forEach(function(o) {
-                        var d = new Date(o.date);
-                        d = d.getFullYear() + '.' + (d.getMonth()*1+1) + '.' + d.getDate();
+                        data.forEach(function(o) {
+                            var d = new Date(o.date);
+                            d = d.getFullYear() + '.' + (d.getMonth()*1+1) + '.' + d.getDate();
 
-                        label.push(d);
-                        indivisual.push(o.개인);
-                        foreigner.push(o.외국인);
-                        institutional.push(o.기관);
-                        kospiPriceIndexes.push(o.priceIndex);
-                    })
+                            label.push(d);
+                            indivisual.push(o.개인);
+                            foreigner.push(o.외국인);
+                            institutional.push(o.기관);
+                            kospiPriceIndexes.push(o.priceIndex);
+                        })
 
-                    config.data.labels = label;
-                    config.data.datasets[0].data = indivisual;
-                    config.data.datasets[1].data = foreigner;
-                    config.data.datasets[2].data = institutional;
-                    config.data.datasets[3].data = kospiPriceIndexes;
+                        config.data.labels = label;
+                        config.data.datasets[0].data = indivisual;
+                        config.data.datasets[1].data = foreigner;
+                        config.data.datasets[2].data = institutional;
+                        config.data.datasets[3].data = kospiPriceIndexes;
 
-                    window.myLine.update();
+                        myLine.update();
 
-                    if(req.status == 200){
+                        if(req.status == 200){
+                        }
                     }
-                }
-            };
-            req.send(null);
+                };
+                req.send(null);
+            }
         }
     }
 
