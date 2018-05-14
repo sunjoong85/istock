@@ -33,7 +33,7 @@ const traderTrend = {
 
            if(matchToday(convertYMD($(sel날짜).text()))) {
               let today = new Date();
-              today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 00, 0);
+              today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0);
 
               var obj = {
                 'date' : today.getTime(),
