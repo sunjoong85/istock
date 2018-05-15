@@ -70,6 +70,9 @@
                     scaleLabel: {
                         display: true,
                         labelString: '달러/$'
+                    },
+                    ticks: {
+                        stepSize : 0.5
                     }
                 }]
             }
