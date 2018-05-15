@@ -2,10 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
+const repositoryPath = require('../context').path.repository;
+
+
 const traderTrend = {
     //Trader Trend of Buyer
     uri: 'http://finance.naver.com/sise/sise_index.nhn?code=KOSPI',
     callback: function (error, res, done) {
+
       const sel날짜 = '#time';
       const sel투자자별매매동향 = '#contentarea_left > div.box_top_sub > div > dl';
       const sel개인 = 'dd:nth-child(2) > span';
@@ -45,7 +49,7 @@ const traderTrend = {
                 '기관' : convertTraderTrendNum($투자자별매매동향.find(sel기관).text())
               }
 
-              const filePath = path.join(__dirname, '../traderTrend.json')
+              const filePath = repositoryPath + '/traderTrend.json';
 
               let dataList = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
@@ -82,7 +86,6 @@ function matchToday(ymdList) {
 
 //2,477.71을 변환한다.
 function convertPriceIndexNum(str) {
-  console.log("input" , str);
   return str.split(',').join('')*1;
 }
 
