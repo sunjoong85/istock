@@ -3,17 +3,21 @@
     <img src="./assets/logo.png">
     <HelloWorld/>
     <TraderTrend/>
+    <DramExchange/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
 import TraderTrend from './components/TraderTrend'
+import DramExchange from './components/DramExchange'
+
+Chart.defaults.global.defaultFontSize=20;
 
 export default {
   name: 'App',
   components: {
-    HelloWorld, TraderTrend
+    HelloWorld, TraderTrend, DramExchange
   }
 }
 </script>

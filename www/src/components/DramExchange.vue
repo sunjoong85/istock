@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas id='canvas'></canvas>
+        <canvas id='canvas2'></canvas>
     </div>
 </template>
 
@@ -20,37 +20,24 @@
         data: {
             labels: [],
             datasets: [{
-                label: '개인',
+                label: 'DDR4 8Gb',
                 fill: false,
                 backgroundColor: chartColors.red,
                 borderColor: chartColors.red,
-                data: [],
-                yAxisID : 'y-axis-1'
-
+                data: []
             }, {
-                label: '외국인',
+                label: 'DDR4 4Gb',
                 fill: false,
                 backgroundColor: chartColors.blue,
                 borderColor: chartColors.blue,
-                data: [],
-                yAxisID : 'y-axis-1'
+                data: []
             },
                 {
-                    label: '기관',
+                    label: 'DDR3 4Gb',
                     fill: false,
                     backgroundColor: chartColors.yellow,
                     borderColor: chartColors.yellow,
-                    data: [],
-                    yAxisID : 'y-axis-1'
-                },
-                {
-                    label: 'KOSPI',
-                    fill: false,
-                    backgroundColor: chartColors.grey,
-                    borderColor: chartColors.grey,
-                    borderDash : [5],
-                    data: [],
-                    yAxisID: 'y-axis-2'
+                    data: []
                 }]
         },
 
@@ -63,7 +50,7 @@
             responsive: true,
             title: {
                 display: true,
-                text: '투자자별매매동향(KOSPI)',
+                text: 'DRAM Exchange Index',
                 fontSize : 28
             },
             tooltips: {
@@ -82,21 +69,9 @@
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: '매매동향/억원'
-                    },
-                    id: 'y-axis-1'
-                },
-                    { display: true,
-                        position: 'right',
-                        id: 'y-axis-2',
-                        scaleLabel: {
-                            display: true,
-                            labelString : 'KOSPI'
-                        },
-                        ticks: {
-                            stepSize : 5
-                        }
-                    }]
+                        labelString: 'dollar/$'
+                    }
+                }]
             }
         }
     };
@@ -105,10 +80,10 @@
     //모바일 사이즈
 
     export default {
-        name: "TraderTrend",
+        name: "DramExchange",
 
         mounted: function() {
-            var ctx = document.getElementById('canvas').getContext('2d');
+            var ctx = document.getElementById('canvas2').getContext('2d');
             myLine = new Chart(ctx, config);
             this.getData();
         },
@@ -116,38 +91,32 @@
         methods: {
             getData : function() {
                 var req = new XMLHttpRequest();
-                req.open('GET', '/traderTrend', true);
+                req.open('GET', '/dramExchange', true);
                 req.onreadystatechange = function (aEvt) {
                     if (req.readyState == 4) {
                         let data = JSON.parse(req.responseText);
 
                         let label = [];
-                        let indivisual = [];
-                        let foreigner = [];
-                        let institutional = [];
-                        let kospiPriceIndexes = [];
+                        let ddr4_8gb = [];
+                        let ddr4_4gb = [];
+                        let ddr3_4gb = [];
 
                         data.forEach(function(o) {
                             var d = new Date(o.date);
                             d = d.getFullYear() + '.' + (d.getMonth()*1+1) + '.' + d.getDate();
 
                             label.push(d);
-                            indivisual.push(o.개인);
-                            foreigner.push(o.외국인);
-                            institutional.push(o.기관);
-                            kospiPriceIndexes.push(o.priceIndex);
+                            ddr4_8gb.push(o.ddr4_8gb);
+                            ddr4_4gb.push(o.ddr4_4gb);
+                            ddr3_4gb.push(o.ddr3_4gb);
                         })
 
                         config.data.labels = label;
-                        config.data.datasets[0].data = indivisual;
-                        config.data.datasets[1].data = foreigner;
-                        config.data.datasets[2].data = institutional;
-                        config.data.datasets[3].data = kospiPriceIndexes;
+                        config.data.datasets[0].data = ddr4_8gb;
+                        config.data.datasets[1].data = ddr4_4gb;
+                        config.data.datasets[2].data = ddr3_4gb;
 
                         myLine.update();
-
-                        if(req.status == 200){
-                        }
                     }
                 };
                 req.send(null);
