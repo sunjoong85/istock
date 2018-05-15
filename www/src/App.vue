@@ -42,10 +42,10 @@ export default {
 
   }
   .chart-container {
-    width: 1200px;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 40px;
+    width: 1000px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
   }
 
 </style>
