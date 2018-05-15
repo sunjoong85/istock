@@ -27,8 +27,7 @@ app.listen(7777, function () {
   console.log('Example app listening on port 7777!');
 });
 
-crawler.queue(require('./job/jobs'));
 
 schedule.scheduleJob('0 17 * * 1-5', function(){
-
+    crawler.queue(require('./job/jobs'));
 });
