@@ -64,7 +64,7 @@
             title: {
                 display: true,
                 text: '투자자별매매동향(KOSPI)',
-                fontSize : 28
+                fontSize : 25
             },
             tooltips: {
                 mode: 'index',

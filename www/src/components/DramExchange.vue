@@ -51,7 +51,7 @@
             title: {
                 display: true,
                 text: 'DRAM Exchange Index',
-                fontSize : 28
+                fontSize : 25
             },
             tooltips: {
                 mode: 'index',
@@ -69,7 +69,7 @@
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'dollar/$'
+                        labelString: '달러/$'
                     }
                 }]
             }
