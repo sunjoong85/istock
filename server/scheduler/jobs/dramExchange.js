@@ -1,8 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
-
 const repositoryPath = require('../../context').path.repository;
-
+const logger = require('../../logger/logger.js');
 /*
  DDR4 8Gb (1G*8) 2133/2400 MHz	9.15	8.35	9.15	8.35	8.856
 -0.27 %	Historical Price Chart
@@ -21,7 +20,9 @@ module.exports = {
         const sel_ddr4_4gb = '#tb_NationalDramSpotPrice > tr:nth-child(3) > td:nth-child(6)';
         const sel_ddr3_4gb = '#tb_NationalDramSpotPrice > tr:nth-child(4) > td:nth-child(6)';
 
+        logger.log('[dramExchange.js] Start to callect data.')
         if(error){
+              logger.log('[dramExchange.js] Error')
             console.log(error);
         } else{
             let $ = res.$;
@@ -45,7 +46,11 @@ module.exports = {
             dataList.push(obj);
 
             fs.writeFile(filePath, JSON.stringify(dataList), function(err) {
+              logger.log('[dramExchange.js] Success to write data.')
+
                 if(err) {
+                    logger.log('[dramExchange.js] Fail to write data.')
+
                     return console.log(err);
                 }
             });

@@ -1,8 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
-
 const repositoryPath = require('../../context').path.repository;
-
+const logger = require('../../logger/logger.js');
 
 module.exports = {
     //Trader Trend of Buyer
@@ -16,8 +15,11 @@ module.exports = {
         const sel기관 = 'dd:nth-child(4) > span';
         const selKOSPIIndex = '#now_value';
 
+        logger.log('[traderTrend.js] Start to collect data.')
         if(error){
             console.log(error);
+            logger.log('[traderTrend.js] Error')
+
         } else{
             let $ = res.$;
 
@@ -55,10 +57,16 @@ module.exports = {
                 dataList.push(obj);
 
                 fs.writeFile(filePath, JSON.stringify(dataList), function(err) {
+                  logger.log('[traderTrend.js] Success to write data.')
+
                     if(err) {
+                        logger.log('[traderTrend.js] Fail to write data.')
+
                         return console.log(err);
                     }
                 });
+            } else {
+                logger.log('[traderTrend.js] Stock market is not opened today.')
             }
         }
         done();

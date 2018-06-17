@@ -8,6 +8,10 @@ const dramExchangeJob = require('./jobs/dramExchange');
 
 module.exports = {
     run : function() {
+console.log("start to run")
+            crawler.queue(traderTrendJob);
+            crawler.queue(dramExchangeJob);
+
         schedule.scheduleJob('0 17 * * 1-5', function(){
             crawler.queue(traderTrendJob);
         });
