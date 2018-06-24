@@ -109,7 +109,7 @@
 
   .chart-container {
     margin: auto;
-    width: 95vw;
+    width: 75vw;
     height: 50vh;
     position:relative;
     flex : 1;
@@ -158,6 +158,17 @@
       width: 60vw;  //todo media query
       /*height: 100vh; //max height : screen size*/
     }
+
+    .chart-container {
+      margin: auto;
+      width: 100vw;
+      height: 50vh;
+      position:relative;
+      flex : 1;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
   }
 
 
