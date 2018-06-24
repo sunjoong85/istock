@@ -161,7 +161,7 @@
 
     .chart-container {
       margin: auto;
-      width: 100vw;
+      width: 95vw;
       height: 50vh;
       position:relative;
       flex : 1;
