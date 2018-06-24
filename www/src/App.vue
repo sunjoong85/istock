@@ -52,7 +52,7 @@
   import TraderTrend from './components/TraderTrend'
   import DramExchange from './components/DramExchange'
 
-  Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontSize = 14;
 
   export default {
     name: 'App',
@@ -104,14 +104,14 @@
 
   // Demo purposes only
   .md-drawer {
-    width: 25vw;  //todo media query
-    height: 100vh; //max height : screen size
+    width: 20vw;  //todo media query
+    /*height: 100vh; //max height : screen size*/
   }
 
   @media screen and (max-width: 600px) {
     .md-drawer {
       width: 60vw;  //todo media query
-      height: 100vh; //max height : screen size
+      /*height: 100vh; //max height : screen size*/
     }
   }
 </style>
