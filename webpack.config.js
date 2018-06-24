@@ -76,9 +76,14 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
+   /* historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+*/
+    proxy: [{
+      context: ['/traderTrend', '/dramExchange'],
+      target: 'http://localhost:7777',
+    }]
   },
   performance: {
     hints: false

@@ -1,14 +1,15 @@
 <template>
   <div id="app" class="page-container">
-    <md-app md-mode="reveal">
+    <md-app md-mode="fixed">  <!-- fixed reveal -->
       <md-app-toolbar class="md-primary">
+        <!-- viewport에 따라 사라지도록 하기-->
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">SJ Playground</span>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible">
+      <md-app-drawer :md-active.sync="menuVisible">  <!-- permanent-->
         <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
 
         <md-list>
