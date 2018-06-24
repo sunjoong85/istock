@@ -28,6 +28,12 @@ app.get('/dramExchange', (req, res) => {
     });
 });
 
+app.get('/chinaPoly', (req, res) => {
+  fs.readFile('repository/chinaPoly.json', 'utf8', (err, contents) => {
+    res.send(contents);
+  });
+});
+
 //#KOSPI_now
 //
 app.listen(7777, function () {

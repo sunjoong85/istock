@@ -38,9 +38,19 @@
         </md-list>
       </md-app-drawer>
 
-      <md-app-content>
-        <TraderTrend class="chart-container"/>
-        <DramExchange class="chart-container"/>
+      <md-app-content >
+
+        <div class="chart-container">
+          <TraderTrend/>
+        </div>
+        <div class="chart-container">
+          <DramExchange />
+        </div>
+
+        <div class="chart-container">
+          <ChinaPolysilicon />
+        </div>
+
       </md-app-content>
 
     </md-app>
@@ -51,8 +61,9 @@
 <script>
   import TraderTrend from './components/TraderTrend'
   import DramExchange from './components/DramExchange'
+  import ChinaPolysilicon from "./components/ChinaPolysilicon";
 
-  Chart.defaults.global.defaultFontSize = 14;
+  Chart.defaults.global.defaultFontSize = 10;
 
   export default {
     name: 'App',
@@ -64,7 +75,7 @@
     },
 
     components: {
-      TraderTrend, DramExchange
+      TraderTrend, DramExchange, ChinaPolysilicon
     },
 
     mounted() {
@@ -88,25 +99,59 @@
 
 <style lang="scss">
 
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  .chart-container {
+    margin: auto;
+    width: 95vw;
+    height: 50vh;
+    position:relative;
+    flex : 1;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .page-container {
-    height: 100vh
+    /*height: 100vh*/
   }
 
   .md-app {
     /*// max-height: 100%;*/
-    height: 100%;
+    /*height: 100%;*/
     border: 1px solid rgba(#000, .12);
   }
 
   .md-app-toolbar {
-    height: 5vh;
+   // height: 5vh;
   }
 
+  .md-app-content {
+    display:flex;
+    flex-direction:column;
+    padding: 0;
+    /*height: 100%;*/
+  }
   // Demo purposes only
   .md-drawer {
     width: 20vw;  //todo media query
     /*height: 100vh; //max height : screen size*/
   }
+
+
+
+  /*.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center
+
+  }*/
 
   @media screen and (max-width: 600px) {
     .md-drawer {
@@ -114,4 +159,6 @@
       /*height: 100vh; //max height : screen size*/
     }
   }
+
+
 </style>

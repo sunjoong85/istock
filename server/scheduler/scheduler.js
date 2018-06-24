@@ -5,6 +5,7 @@ crawler = new crawler();
 
 const traderTrendJob =  require('./jobs/traderTrend');
 const dramExchangeJob = require('./jobs/dramExchange');
+const chinaPolysilicon = require('./jobs/chinaPolysilicon');
 
 module.exports = {
     run : function() {
@@ -15,5 +16,9 @@ module.exports = {
         schedule.scheduleJob('0 13 * * 1-5', function(){
             crawler.queue(dramExchangeJob);
         });
+
+      schedule.scheduleJob('0 9 * * 1-5', function(){
+             crawler.queue(chinaPolysilicon);
+      });
     }
 }
