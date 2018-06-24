@@ -12,7 +12,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/', function(req, res) {
-  res.sendFile(repositoryPath + '/traderTrend.json');
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get('/traderTrend', (req, res) => {
