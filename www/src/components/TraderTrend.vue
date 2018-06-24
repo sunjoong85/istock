@@ -94,7 +94,7 @@
                             labelString : 'KOSPI'
                         },
                         ticks: {
-                            stepSize : 10
+                            stepSize : 50
                         }
                     }]
             }
@@ -154,10 +154,6 @@
             }
         }
     }
-
-
-
-
 
 </script>
 
