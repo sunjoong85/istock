@@ -106,6 +106,12 @@
   .md-drawer {
     width: 25vw;  //todo media query
     height: 100vh; //max height : screen size
-    max-width: calc(100vw - 125px);
+  }
+
+  @media screen and (max-width: 600px) {
+    .md-drawer {
+      width: 60vw;  //todo media query
+      height: 100vh; //max height : screen size
+    }
   }
 </style>

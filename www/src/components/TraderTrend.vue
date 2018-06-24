@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas id='canvas'></canvas>
+        <canvas id='canvas' style="width:1200px;height:400px"></canvas>
     </div>
 </template>
 
@@ -61,7 +61,8 @@
                 }
             },
             responsive: true,
-            title: {
+            maintainAspectRatio : false,
+          title: {
                 display: true,
                 text: '투자자별매매동향(KOSPI)',
                 fontSize : 25

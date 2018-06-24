@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas id='canvas2'></canvas>
+        <canvas id='canvas2' style="width:1200px;height:400px"></canvas>
     </div>
 </template>
 
@@ -48,6 +48,7 @@
                 }
             },
             responsive: true,
+            maintainAspectRatio : false,
             title: {
                 display: true,
                 text: 'DRAM Exchange Index',
