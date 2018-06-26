@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="page-container">
-    <md-app md-mode="fixed">  <!-- fixed reveal -->
+    <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary">
+
         <!-- viewport에 따라 사라지도록 하기-->
 
         <md-button class="md-icon-button" v-if="!menuVisible" @click="menuVisible = !menuVisible">
@@ -118,14 +119,13 @@
   }
 
   .page-container {
-    /*height: 100vh*/
   }
 
   .md-app {
-    /*// max-height: 100%;*/
-    /*height: 100%;*/
     border: 1px solid rgba(#000, .12);
+    max-height: 800px;
   }
+
 
   .md-app-toolbar {
    // height: 5vh;
@@ -140,23 +140,13 @@
   // Demo purposes only
   .md-drawer {
     width: 20vw;  //todo media query
-    /*height: 100vh; //max height : screen size*/
   }
 
 
-
-  /*.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center
-
-  }*/
-
   @media screen and (max-width: 600px) {
     .md-drawer {
-      width: 60vw;  //todo media query
-      /*height: 100vh; //max height : screen size*/
+      width: 60vw;
+
     }
 
     .chart-container {
@@ -168,7 +158,6 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-
   }
 
 
