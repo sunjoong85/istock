@@ -17,7 +17,7 @@ module.exports = {
             crawler.queue(dramExchangeJob);
         });
 
-      schedule.scheduleJob('0 9 * * 1-5', function(){
+      schedule.scheduleJob('0 8 * * 1-5', function(){
              crawler.queue(chinaPolysilicon);
       });
     }

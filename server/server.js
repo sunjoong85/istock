@@ -9,27 +9,26 @@ const express = require('express');
 const app = express();
 
 
-
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/traderTrend', (req, res) => {
-  fs.readFile('repository/traderTrend.json', 'utf8', (err, contents) => {
+  fs.readFile(repositoryPath + '/traderTrend.json', 'utf8', (err, contents) => {
     res.send(contents);
   });
 });
 
 app.get('/dramExchange', (req, res) => {
-    fs.readFile('repository/dramExchange.json', 'utf8', (err, contents) => {
-        res.send(contents);
-    });
+  fs.readFile(repositoryPath + '/dramExchange.json', 'utf8', (err, contents) => {
+    res.send(contents);
+  });
 });
 
 app.get('/chinaPoly', (req, res) => {
-  fs.readFile('repository/chinaPoly.json', 'utf8', (err, contents) => {
+  fs.readFile(repositoryPath + '/chinaPolysilicon.json', 'utf8', (err, contents) => {
     res.send(contents);
   });
 });

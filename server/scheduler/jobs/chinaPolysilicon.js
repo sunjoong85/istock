@@ -19,7 +19,8 @@ module.exports = {
             let $ = res.$;
 
             let today = new Date();
-            today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);
+            //하루 후행적임
+            today = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1, 8, 0, 0);
 
             var obj = {
                 'date': today.getTime(),
